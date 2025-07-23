@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Send email -->
+<div class="container mx-auto p-6">
+    <div class="flex flex-col md:flex-row-reverse justify-between items-center bg-white shadow-sm px-6 rounded-full">
+        <div class="flex flex-col md:flex-row-reverse justify-center items-center p-6 space-x-6">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" width="100px">
+            <h1>Send me an e-mail</h1>
+        </div>
+        <div>
+            <a href="" class="px-3 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-full md:my-0">Send now</a>
+        </div>
+    </div>
+</div>
+
+<!-- Who i am -->
+<section>
+    <div class="container mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div class="flex flex-col items-center bg-white p-6 rounded-sm space-y-6">
+                <h1 class="text-6xl text-slate-700 animate__wobble">من انا؟</h1>
+                <p class="leading-8 text-xl">خريج حديث في مجال علوم الحاسوب، يمتلك أساسًا قويًا في حل المشكلات، والتفكير المنطقي، والمبادئ الأساسية للبرمجيات. يتمتع بمهارات عالية في العمل الجماعي، والتواصل، وإدارة الوقت، إلى جانب قدرة كبيرة على التعلم الذاتي والتكيف السريع. متمكن من استخدام التكنولوجيا ومتحمس للتعلم المستمر. يتقن اللغة الإنجليزية بشكل احترافي، مما يمكنه من فهم المصادر التقنية ومواكبة الاتجاهات العالمية.</p>
+                <a href="{% static 'files/cv.pdf' %}" download class="px-3 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-full md:my-0">تحميل السيرة الذاتية <i class="fas fa-file-download text-xl mr-2"></i></a>
+            </div>
+            <div>
+                <img src="{% static 'img/question.svg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- My skills -->
+<section>
+    <div class="container mx-auto px-6">
+        <div class="flex justify-center my-14">
+            <h1 class="text-4xl font-bold text-slate-700">مهاراتي</h1>
+        </div>
+        <div id="skills" class="grid grid-cols-1 md:grid-cols-3 md:gap-y-6 gap-6 gap-y-10">
+            <div id="web" class="flex flex-col justify-center items-center bg-white p-6 rounded-sm space-y-4 shadow-sm hover:bg-slate-100 animate__backInLeft">
+                <img src="{% static 'img/code.png' %}" alt="Code" class="w-16 -mt-14">
+                <h1 class="text-2xl font-bold text-slate-700">تطوير تطبيقات الويب</h1>
+                <p>خبرة في بناء تطبيقات ويب احترافية باستخدام إطار Django، مع التركيز على الأمان، الأداء، وربط الواجهة الخلفية مع قواعد البيانات. تصميم واجهات متجاوبة (Responsive) باستخدام HTML، CSS، وBootstrap لتقديم تجربة مستخدم سلسة على جميع الأجهزة.</p>
+            </div>
+
+            <div id="mobile" class="flex flex-col justify-center items-center bg-white p-6 rounded-sm space-y-4 shadow-sm hover:bg-slate-100">
+                <img src="{% static 'img/mobile.png' %}" alt="Code" class="w-14 -mt-14 md:-mt-22">
+                <h1 class="text-2xl font-bold text-slate-700">تطوير تطبيقات الموبايل</h1>
+                <p>إنشاء تطبيقات هجينة (iOS & Android) باستخدام Flutter وDart، مع واجهات أنيقة وأداء عالي وتجربة مستخدم متميزة.</p>
+            </div>
+
+            <div id="desktop" class="flex flex-col justify-center items-center bg-white p-6 rounded-sm space-y-4 shadow-sm hover:bg-slate-100">
+                <img src="{% static 'img/computer.png' %}" alt="Code" class="w-14 -mt-14">
+                <h1 class="text-2xl font-bold text-slate-700">تطوير تطبيقات سطح المكتب</h1>
+                <p>تطوير برامج سطح مكتب باستخدام تقنيات متعددة (مثل PyQt أو Electron)، لتلبية احتياجات الأعمال والمستخدمين النهائيين.</p>
+            </div>
+
+            <div id="database" class="flex flex-col justify-center items-center bg-white p-6 rounded-sm space-y-4 shadow-sm hover:bg-slate-100">
+                <img src="{% static 'img/database.png' %}" alt="Code" class="w-14 -mt-10">
+                <h1 class="text-2xl font-bold text-slate-700">التعامل مع قواعد البيانات</h1>
+                <p>خبرة في تصميم وربط قواعد البيانات مثل PostgreSQL وMySQL وSQLite، وإجراء العمليات المعقدة (CRUD)، وتحسين الأداء.</p>
+            </div>
+
+            <div id="ui-ux" class="flex flex-col justify-center items-center bg-white p-6 rounded-sm space-y-4 shadow-sm hover:bg-slate-100">
+                <img src="{% static 'img/ui-ux.png' %}" alt="Code" class="w-14 -mt-10">
+                <h1 class="text-2xl font-bold text-slate-700">تصميم UI/UX</h1>
+                <p>تصميم واجهات مستخدم جذابة وسهلة الاستخدام باستخدام أدوات مثل Figma وAdobe XD، مع التركيز على تجربة المستخدم وسهولة التنقل.</p>
+            </div>
+
+            <div id="hosting" class="flex flex-col justify-center items-center bg-white p-6 rounded-sm space-y-4 shadow-sm hover:bg-slate-100">
+                <img src="{% static 'img/hosting-server.png' %}" alt="Code" class="-mt-10" width="72px">
+                <h1 class="text-2xl font-bold text-slate-700">استضافة المواقع (Web Hosting)</h1>
+                <p>إعداد ونشر المواقع على الإنترنت باستخدام خدمات الاستضافة (مثل: cPanel، DigitalOcean، Heroku)، مع إدارة النطاقات وربط قواعد البيانات.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section>
+    <div class="container mx-auto px-6">
+        <div class="flex justify-center my-14">
+            <h1 class="text-4xl font-bold text-slate-700">تواصل معي</h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="#" target="_blank" class="flex flex-col items-center justify-center bg-blue-100 border border-blue-300 rounded-lg py-6 shadow-md hover:bg-blue-200 transition duration-300">
+                <i class="fab fa-github text-5xl text-blue-600 mb-4"></i>
+                <span class="text-xl font-semibold text-blue-700">GitHub</span>
+            </a>
+            <a href="#" target="_blank" class="flex flex-col items-center justify-center bg-blue-100 border border-blue-300 rounded-lg py-6 shadow-md hover:bg-blue-200 transition duration-300">
+                <i class="fab fa-facebook text-5xl text-blue-600 mb-4"></i>
+                <span class="text-xl font-semibold text-blue-700">Facebook</span>
+            </a>
+            <a href="#" target="_blank" class="flex flex-col items-center justify-center bg-blue-100 border border-blue-300 rounded-lg py-6 shadow-md hover:bg-blue-200 transition duration-300">
+                <i class="fab fa-linkedin text-5xl text-blue-600 mb-4"></i>
+                <span class="text-xl font-semibold text-blue-700">LinkedIn</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

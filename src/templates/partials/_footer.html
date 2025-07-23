@@ -1,0 +1,55 @@
+{% load static %}
+<footer class="bg-slate-900 mt-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 text-white">
+    <!-- القسم الأول: الهدف -->
+    <div class="flex flex-col items-center md:items-start">
+      <img src="{% static 'img/white-logo .png' %}" alt="Logo" class="w-32 h-24 mb-4 rounded-lg shadow-lg">
+      <h2 class="text-lg font-semibold text-white">هدفنا</h2>
+      <p class="mt-2 text-sm text-center md:text-left text-white">نحن ملتزمون بتقديم أفضل خدمة ممكنة.</p>
+    </div>
+    
+    <!-- القسم الثاني: الروابط -->
+    <div class="flex flex-col items-center md:items-start">
+      <h2 class="text-lg font-semibold text-white">روابط</h2>
+      <ul class="mt-2 space-y-2">
+        <li>
+          <a href="#" class="text-white hover:text-blue-500 hover:underline transition duration-300 flex items-center">
+            <i class="fas fa-home mr-2"></i> الرئيسية
+          </a>
+        </li>
+        <li>
+          <a href="#" class="text-white hover:text-blue-500 hover:underline transition duration-300 flex items-center">
+            <i class="fas fa-briefcase mr-2"></i> Portfolio
+          </a>
+        </li>
+        <li>
+          <a href="#" class="text-white hover:text-blue-500 hover:underline transition duration-300 flex items-center">
+            <i class="fas fa-envelope mr-2"></i> تواصل
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- القسم الثالث: تواصل معنا -->
+    <div class="flex flex-col items-center md:items-start">
+      <h2 class="text-lg font-semibold text-white">تواصل معنا</h2>
+      <ul class="mt-2 space-y-2">
+        <li>
+          <a href="#" class="text-white hover:text-blue-500 hover:underline transition duration-300 flex items-center">
+            <i class="fab fa-facebook-f mr-2"></i> Facebook
+          </a>
+        </li>
+        <li>
+          <a href="#" class="text-white hover:text-blue-500 hover:underline transition duration-300 flex items-center">
+            <i class="fab fa-twitter mr-2"></i> Twitter
+          </a>
+        </li>
+        <li>
+          <a href="#" class="text-white hover:text-blue-500 hover:underline transition duration-300 flex items-center">
+            <i class="fab fa-linkedin-in mr-2"></i> LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

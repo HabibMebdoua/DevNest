@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container mx-auto px-6 py-8">
+
+    <!-- Start Edit modal -->
+    <!--  المودال نفسه -->
+    {% for project in projects %}
+    <div id="edit-modal-{{project.id}}" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg w-11/12 md:w-1/3 p-6 relative">
+        
+        <!-- زر إغلاق -->
+        <button onclick="document.getElementById('edit-modal-{{project.id}}').classList.add('hidden')" class="absolute top-2 left-2 text-gray-500 hover:text-gray-700 text-xl">
+            &times;
+        </button>
+    
+        <!-- محتوى المودال -->
+        <h2 class="text-xl font-bold mb-4"> {{project.title}} - تعديل طلب المشروع</h2>
+        <form action="{% url 'admin_edit_project' project.pk %}" method="POST">
+            {% csrf_token %}
+            <form method="POST" class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md space-y-5">
+                {% csrf_token %}
+                
+                <!-- حالة المشروع -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">حالة المشروع</label>
+                  <select name="state"
+                    class="mt-1 block w-full px-10 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option value="inprogress" {% if project.state == 'inprogress' %}selected{% endif %}>قيد التطوير</option>
+                    <option value="completed" {% if project.state == 'completed' %}selected{% endif %}>مكتمل</option>
+                    <option value="pending" {% if project.state == 'pending' %}selected{% endif %}>معلق</option>
+                  </select>
+                </div>
+                <!-- تاريخ التسليم -->
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1"> تاريخ التسليم</label>
+                    <input type="date" name="delivery_date" value="{{ project.delivery_date|date:'Y-m-d' }}"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+              
+                <!-- زر حفظ -->
+                <div class="text-end my-4">
+                  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">حفظ</button>
+                </div>
+              </form>
+              
+        </form>
+       
+        </div>
+    </div>
+    {% endfor %}
+    <!-- End edit modal -->
+
+    <!-- عنوان لوحة التحكم -->
+    <h1 class="text-3xl font-bold text-slate-700 mb-6">لوحة تحكم الأدمن</h1>
+    <!-- Filter form -->
+    <form action="" class="flex flex-wrap items-center justify-center gap-4 mt-6 mb-4">
+        {% csrf_token %}
+        <div>
+            {{ project_filter.form.title }}
+        </div>
+        <div>
+            {{ project_filter.form.state }}
+        </div>
+        <div>
+            {{ project_filter.form.created_at }}
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">بحث</button>
+    </form>
+    <!-- إحصائيات -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold text-slate-700">عدد المشاريع</h2>
+            <p class="text-3xl font-bold text-blue-600 mt-4">{{ projects.count }}</p>
+        </div>
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold text-slate-700">عدد المشاريع قيد التطوير</h2>
+            <p class="text-3xl font-bold text-green-600 mt-4">{{ projects_inprogress }}</p>
+        </div>
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold text-slate-700">عدد الطلبات المسلمة</h2>
+            <p class="text-3xl font-bold text-red-600 mt-4">{{ projects_completed }}</p>
+        </div>
+    </div>
+
+    <!-- جدول المشاريع -->
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-slate-700 mb-4">إدارة المشاريع</h2>
+        <table class="min-w-full divide-y divide-slate-200 border border-slate-300">
+            <thead class="bg-slate-100">
+                <tr>
+                    <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700">عنوان المشروع</th>
+                    <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700"> معلومات صاحب المشروع</th>
+                    <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700">حالة المشروع</th>
+                    <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+                {% for project in projects %}
+                <tr>
+                    <td class="px-4 py-2 text-right text-sm text-slate-600">{{ project.title }}</td>
+                    <td class="px-4 py-2 text-center text-sm text-slate-600">{{ project.owner.username }} - {{ project.owner.phone_number }} - {{ project.owner.email }}</td>
+                    <td class="px-4 py-2 text-center text-sm text-slate-600">{{ project.state }}</td>
+                    <td class="px-4 py-2 text-center text-sm">
+                        <!-- زر التعديل -->
+                        <button onclick="document.getElementById('edit-modal-{{project.id}}').classList.remove('hidden')" 
+                        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        <i class="ri-edit-line mr-2"></i> تعديل
+                        </button>
+                        <!-- زر الحذف -->
+                        <a href="{% url 'admin_delete_project' project.id %}" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">حذف</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center text-slate-500 py-4">لا توجد مشاريع لعرضها</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

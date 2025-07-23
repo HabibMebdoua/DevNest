@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section id="welcome">
+    <div class="flex container flex-col-reverse md:flex-row mx-auto items-center text-center md:text-right px-6">
+        <div class="md:w-1/2 flex flex-col space-y-6">
+            {% if user.is_authenticated %} 
+            <h1 class="text-4xl font-bold text-slate-700 my-5">  مرحبا {{request.user.username}} </h1> 
+            {% endif %}
+            <h1 class="text-4xl font-bold text-slate-700 my-5">لديك فكرة مشروع برمجي؟</h1>
+            <p class="text-slate-700">أنت تبتكر الفكرة، ونحن نتولى تحويلها إلى تجربة رقمية متكاملة تأسر المستخدمين — سواء كان ذلك عبر تطبيق ويب، تطبيق جوال، برنامج سطح مكتب، أو حتى فيديو تعريفي يعكس رؤيتك بدقة واحترافية</p>
+            <a href="{% url 'order_project' %}" class="text-white text-center  px-6 py-2 self-start rounded-full bg-blue-700 hover:bg-blue-500">أطلب مشروعك الأن</a>
+        </div>
+        <div class="w-1/2">
+            <img src="{% static '/img/index-img.png' %}" alt="Hero Image" width="">
+        </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="container text-center my-6 ">
+
+        <h1 class="font-bold text-5xl my-12 text-slate-700 text-shadow-blue-700 animate-bounce">خدماتنا</h1>
+        
+        <div class="flex flex-col md:flex-row md:space-x-6 md:space-y-0 space-x-0  space-y-5 mx-6">
+            
+            <div class="md:mx-5 bg-slate-100 hover:bg-slate-200 md:w-1/3 flex flex-col items-center p-6 space-y-2 rounded-lg border border-slate-200 shadow-lg">
+                <img src="{% static '/img/mobile.png' %}" alt="mobile" class="w-16 -mt-12">
+                <h5 class="font-bold text-lg text-slate-900"> تطبيقات الموبايل</h5>
+                <p class="text-slate-700">نقدم مجموعة متنوعة من تطبيقات الموبايل التي تلبي احتياجاتك.</p> 
+            </div>
+
+            <div class=" bg-slate-100 hover:bg-slate-200 md:w-1/3 flex flex-col items-center p-6 space-y-2 rounded-lg border border-slate-200 shadow-lg">
+                <img src="{% static '/img/site.png' %}" alt="mobile" class="w-16 -mt-12">
+                <h5 class="font-bold text-lg text-slate-900"> تطبيقات الويب</h5>
+                <p class="text-slate-700">نقدم مجموعة متنوعة من تطبيقات الموبايل التي تلبي احتياجاتك.</p> 
+            </div>
+            
+            <div class=" bg-slate-100 hover:bg-slate-200 md:w-1/3 flex flex-col items-center p-6 space-y-2 rounded-lg border border-slate-200 shadow-lg">
+                <img src="{% static '/img/computer.png' %}" alt="computer" class="w-16  -mt-12">
+                <h5 class="font-bold text-lg text-slate-900"> تطبيقات الديسكتوب</h5>
+                <p class="text-slate-700">نقدم مجموعة متنوعة من تطبيقات الموبايل التي تلبي احتياجاتك.</p> 
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

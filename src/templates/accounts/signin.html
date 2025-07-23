@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ <!-- Login section -->
+ <div class="container mx-auto px-6 ">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="flex flex-col items-center justify-center">
+            <img src="{% static '/img/logo.png' %}" alt="Logo" class="w-72 mx-auto mt-10">
+        </div>
+            <div class="bg-white shadow-md rounded-lg p-8 mt-10">
+                <h2 class="text-2xl font-bold text-center mb-6">إنشاء حساب</h2>
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded focus:outline-none focus:shadow-outline">تسجيل</button>
+                </form>
+            </div>
+    </div>
+</div>
+{% endblock %}

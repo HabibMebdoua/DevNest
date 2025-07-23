@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-8">
+    <h2 class="text-3xl font-bold text-slate-700 mb-6 text-center">مساعد الذكاء الاصطناعي</h2>
+
+    <!-- صندوق المحادثة -->
+    <div id="chat-box" class="bg-gray-100 p-6 rounded-lg shadow-md h-96 overflow-y-auto mb-4 border border-gray-300">
+        <!-- الرسائل ستظهر هنا -->
+        <p class="text-gray-500 text-center">ابدأ المحادثة الآن...</p>
+    </div>
+
+    <!-- نموذج الإدخال -->
+    <form id="chat-form" method="POST" class="flex items-center bg-white shadow-md rounded-lg p-4 border border-gray-300">
+        {% csrf_token %}
+        <input type="text" name="message" id="message" class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="اكتب رسالتك هنا...">
+        <button type="submit" class="ml-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+            إرسال
+        </button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#chat-form').submit(function (e) {
+            e.preventDefault();
+
+            const message = $('#message').val();
+            const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
+            if (!message.trim()) {
+                return; // لا ترسل رسالة فارغة
+            }
+
+            // أضف الرسالة إلى صندوق المحادثة
+            $('#chat-box').append(`
+                <div class="text-right mb-4">
+                    <div class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md">
+                        ${message}
+                    </div>
+                </div>
+            `);
+
+            // امسح الحقل النصي
+            $('#message').val('');
+
+            // أرسل الطلب إلى الخادم
+            $.ajax({
+                url: "",
+                type: "POST",
+                data: {
+                    message: message,
+                    csrfmiddlewaretoken: csrfToken
+                },
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                success: function (data) {
+                    // أضف الرد إلى صندوق المحادثة
+                    $('#chat-box').append(`
+                        <div class="text-left mb-4">
+                            <div class="inline-block bg-gray-300 text-gray-800 px-4 py-2 rounded-lg shadow-md">
+                                ${data.response}
+                            </div>
+                        </div>
+                    `);
+
+                    // التمرير إلى الأسفل تلقائيًا
+                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                },
+                error: function () {
+                    $('#chat-box').append(`
+                        <div class="text-left mb-4">
+                            <div class="inline-block bg-red-500 text-white px-4 py-2 rounded-lg shadow-md">
+                                حدث خطأ أثناء إرسال الطلب.
+                            </div>
+                        </div>
+                    `);
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

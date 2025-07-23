@@ -1,0 +1,41 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevNest</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- FontAwsome Lib -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    {% tailwind_css %}
+</head>
+<body>
+    {% include 'partials/_navbar.html' %}
+    {% include 'partials/_message.html' %}
+
+
+    {% block content %}
+    
+    {% endblock %}
+
+    {% include 'partials/_footer.html' %}
+</body>
+<!-- FontAwsome Lib -->
+<script src="{% static 'js/all.min.js' %}"></script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/687fcc6ec3f077191789092b/1j0pjd3vd';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+<!--End of Tawk.to Script-->
+</html>
