@@ -10,21 +10,21 @@ from .telegram_conf import fetch_telegram_updates_and_link_users,send_telegram_m
 
 ## Link telegram account
 
-@login_required
-def link_telegram_account(request):
-    user = request.user
-    if not user.chat_id:
-        threading.Thread(target=fetch_telegram_updates_and_link_users(user)).start()  
-    context = {
-        'bot_link': 'https://t.me/devnest_req_bot'
-    }
-    return render(request , 'dashboard/client_link_telegram.html',context)
+# @login_required
+# def link_telegram_account(request):
+#     user = request.user
+#     if not user.chat_id:
+#         threading.Thread(target=fetch_telegram_updates_and_link_users(user)).start()  
+#     context = {
+#         'bot_link': 'https://t.me/devnest_req_bot'
+#     }
+#     return render(request , 'dashboard/client_link_telegram.html',context)
 
-def go_to_bot(request):
-    context = {
-        'bot_link': 'https://t.me/devnest_req_bot'
-    }
-    return render(request , 'dashboard/client_link_telegram.html',context)
+# def go_to_bot(request):
+#     context = {
+#         'bot_link': 'https://t.me/devnest_req_bot'
+#     }
+#     return render(request , 'dashboard/client_link_telegram.html',context)
 
    
     
@@ -126,7 +126,7 @@ def admin_edit_project(request, project_id):
             f"📅 *تاريخ التسليم المتوقع:* {project.delivery_date}\n\n"
             f"يرجى التحقق من لوحة التحكم لمتابعة التفاصيل."
             )
-            send_telegram_message(message , project.owner.chat_id)
+            # send_telegram_message(message , project.owner.chat_id)
 
             messages.success(request, 'تم إعلام المالك بنجاح')
         else:

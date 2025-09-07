@@ -75,11 +75,11 @@
     <div class="flex flex-col justify-center items-center mt-10">
         <h1 class="text-2xl text-slate-700">مرحبا بك في لوحة التحكم {{ request.user.username }}</h1>
         <h1 class="text-xl text-slate-800 py-2 px-4 mt-4 rounded-full shadow-lg">لديك {{ projects.count }} مشروع</h1>
-        {% if request.user.chat_id %}
+        <!-- {% if request.user.chat_id %}
             <span class="text-gray-500 text-sm my-4">حسابك مربوط ب telegram</span>
         {% else %}
-        <a href="{% url 'link_telegram' %}" class="py-2 px-4 bg-blue-700 text-white my-4">Telegram</a>
-        {% endif %}
+        <a href="" class="py-2 px-4 bg-blue-700 text-white my-4">Telegram</a>
+        {% endif %} -->
         <!-- Filter form -->
         <form action="" class="flex flex-wrap items-center justify-center gap-4 mt-6">
             {% csrf_token %}
