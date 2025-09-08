@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'dashboard',
     'main',
     'projects',
-    'chatbot',
+    #'chatbot',
     # tailwind CSS
     'tailwind',
     'theme',

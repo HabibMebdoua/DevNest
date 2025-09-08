@@ -2,10 +2,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from projects.models import Project
-from projects.forms import OrderProjectForm
 from projects.filters import ProjectFilter
-import threading
-from .telegram_conf import fetch_telegram_updates_and_link_users,send_telegram_message
+
 ## Client Part
 
 ## Link telegram account
